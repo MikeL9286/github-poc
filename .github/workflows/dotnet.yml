@@ -33,7 +33,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
-    - run: cd "$GITHUB_WORKSPACE/src/GithubPocUnitTests"
+    - run: cd ${{ env.GITHUB_WORKSPACE }}
     - name: Test
       run: dotnet test --no-build --verbosity normal
       
