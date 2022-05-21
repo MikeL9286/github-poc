@@ -10,6 +10,10 @@ on:
     - main
     - develop
   workflow_dispatch:
+  
+defaults:
+  run:
+    working-directory: $GITHUB_WORKSPACE
 
 jobs:
   build:
@@ -25,9 +29,9 @@ jobs:
     - name: debug2
       run: printenv
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./GithubPoc
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ./GithubPoc --no-restore
       
   test:
     name: Test on ${{ matrix.os }}
@@ -38,5 +42,5 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     steps:
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test ./GithubPoc/GithubPocUnitTests.csproj --no-build --verbosity normal
     
