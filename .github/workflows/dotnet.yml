@@ -13,7 +13,6 @@ on:
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -21,14 +20,14 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.*
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
     - name: debug
       run: ls
     - name: debug2
       run: printenv
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
       
   test:
     name: Test on ${{ matrix.os }}
@@ -40,3 +39,4 @@ jobs:
     steps:
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    
