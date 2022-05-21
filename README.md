@@ -1,2 +1,2 @@
-# github-sandbox
-Test github actions and other github eatures
+# github-poc
+Test github actions and other github features

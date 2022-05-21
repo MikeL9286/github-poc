@@ -1,14 +1,14 @@
-using GithubSandbox.Controllers;
+using GithubPoc.Controllers;
 using NUnit.Framework;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GithubSandboxUnitTests;
+namespace GithubPocUnitTests;
 
 public class Tests
 {
     [Test]
-    public void Test1()
+    public void Index_ShouldReturnViewResult()
     {
         var logger = new LoggerFactory().CreateLogger<HomeController>();
         var controller = new HomeController(logger);

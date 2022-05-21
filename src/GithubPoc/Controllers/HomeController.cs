@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using GithubSandbox.Models;
+using GithubPoc.Models;
 
-namespace GithubSandbox.Controllers;
+namespace GithubPoc.Controllers;
 
 public class HomeController : Controller
 {

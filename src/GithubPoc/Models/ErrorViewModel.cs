@@ -1,4 +1,4 @@
-namespace GithubSandbox.Models;
+namespace GithubPoc.Models;
 
 public class ErrorViewModel
 {
