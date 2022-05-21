@@ -33,7 +33,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
-    - run: cd ${{ env.GITHUB_WORKSPACE }}
+    - run: cd "$GITHUB_WORKSPACE"
     - name: Test
       run: dotnet test --no-build --verbosity normal
       
@@ -42,6 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ failure() }}
     steps:
+    - run: cd "$GITHUB_WORKSPACE"
     - name: debug
       run: ls
     - name: debug2
