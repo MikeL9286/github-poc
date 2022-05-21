@@ -12,12 +12,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  fetch:
-    name: Checkout
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -31,14 +25,18 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+    - name: debug
+      run: ls
+    - name: debug2
+      run: printenv
       
   test:
     name: Test on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
     needs: build
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest, windows-latest]
     steps:
     - name: Test
       run: dotnet test --no-build --verbosity normal
