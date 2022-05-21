@@ -33,8 +33,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
+    - run: cd "$GITHUB_WORKSPACE/src/GithubPocUnitTests"
     - name: Test
-      run: dotnet test ./src/GithubPoc/GithubPocUnitTests.csproj --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal
       
   debug:
     needs: test
