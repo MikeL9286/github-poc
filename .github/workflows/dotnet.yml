@@ -21,13 +21,13 @@ jobs:
       with:
         dotnet-version: 6.0.*
     - name: debug
-      run: ls
+      run: ls ./src
     - name: debug2
       run: printenv
     - name: Restore dependencies
-      run: dotnet restore ./GithubPoc
+      run: dotnet restore ./src/GithubPoc
     - name: Build
-      run: dotnet build ./GithubPoc --no-restore
+      run: dotnet build ./src/GithubPoc --no-restore
       
   test:
     name: Test on ${{ matrix.os }}
@@ -38,5 +38,5 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     steps:
     - name: Test
-      run: dotnet test ./GithubPoc/GithubPocUnitTests.csproj --no-build --verbosity normal
+      run: dotnet test ./src/GithubPoc/GithubPocUnitTests.csproj --no-build --verbosity normal
     
