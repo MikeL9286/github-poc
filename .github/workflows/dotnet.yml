@@ -1,0 +1,47 @@
+name: .NET
+
+on:
+  push:
+    branches:
+    - main
+    - develop
+  pull_request:
+    branches: 
+    - main
+    - develop
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    name: Checkout
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['5.0.x', '6.0.x']
+    steps:
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }} 
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    
+    
+      
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+    steps:
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
