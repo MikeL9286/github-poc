@@ -42,7 +42,7 @@ jobs:
     if: ${{ failure() }}
     steps:
     - name: debug
-      run: ls ./src
+      run: ls
     - name: debug2
       run: printenv
     
