@@ -1,4 +1,4 @@
-name: .NET
+name: Build and Test
 
 on:
   push:
@@ -16,8 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+    - uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.*
     - name: Restore dependencies
@@ -45,15 +44,4 @@ jobs:
         path: "${{ github.workspace }}"
     - name: Test on ${{ matrix.os }}
       run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/GithubPocUnitTests/GithubPocUnitTests.csproj"
-      
-  debug:
-    needs: test
-    runs-on: ubuntu-latest
-    if: ${{ failure() }}
-    steps:
-    - uses: actions/download-artifact@v3
-      with:
-        name: src
-        path: "${{ github.workspace }}"
-    - run: ls "${{ github.workspace }}/GithubPocUnitTests"
     
