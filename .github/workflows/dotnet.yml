@@ -42,6 +42,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ failure() }}
     steps:
-    - run: cd "${{ github.workspace }}/src/GithubPocUnitTests"
+    - run: cd "${{ github.workspace }}"
+    - run: ls
+    - run: cd "${{ github.workspace }}/src"
     - run: ls
     
