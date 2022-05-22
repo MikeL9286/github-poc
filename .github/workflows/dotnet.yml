@@ -33,17 +33,15 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
+    - run: cd "${{ github.workspace }}/src/GithubPocUnitTests"
     - name: Test on ${{ matrix.os }}
-      run: dotnet test "${{ github.workspace }}/src/GithubPocUnitTests" --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal
       
   debug:
     needs: test
     runs-on: ubuntu-latest
     if: ${{ failure() }}
     steps:
-    - run: echo ${{ github.workspace }}
-    - name: debug
-      run: ls
-    - name: debug2
-      run: printenv
+    - run: cd "${{ github.workspace }}/src/GithubPocUnitTests"
+    - run: ls
     
