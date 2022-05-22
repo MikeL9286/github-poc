@@ -43,9 +43,8 @@ jobs:
       with:
         name: src
         path: "${{ github.workspace }}"
-    - run: cd "${{ github.workspace }}/GithubPocUnitTests"
     - name: Test on ${{ matrix.os }}
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal "${{ github.workspace }}/GithubPocUnitTests/GithubPocUnitTests.csproj"
       
   debug:
     needs: test
@@ -56,6 +55,5 @@ jobs:
       with:
         name: src
         path: "${{ github.workspace }}"
-    - run: cd "${{ github.workspace }}/GithubPocUnitTests"
-    - run: ls
+    - run: ls "${{ github.workspace }}/GithubPocUnitTests"
     
